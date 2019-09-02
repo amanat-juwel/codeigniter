@@ -2,9 +2,16 @@
 
 class User extends CI_Controller {
 
-	public function index(){
+	public function __construct(){
 
-		$this->load->model('User_model');
+	     parent::__construct();
+
+	     // Load model
+	     $this->load->model('User_model');
+	  }
+
+
+	public function index(){
 
 		$users = $this->User_model->all();
 
@@ -15,7 +22,6 @@ class User extends CI_Controller {
 
 	public function create()
 	{
-		$this->load->model('User_model');
 
 		$this->form_validation->set_rules('name','Name','required');
 		$this->form_validation->set_rules('email','Email','required|valid_email');
@@ -40,7 +46,6 @@ class User extends CI_Controller {
 
 	public function edit($id)
 	{
-		$this->load->model('User_model');
 
 		$user = $this->User_model->getUser($id);
 
@@ -69,7 +74,6 @@ class User extends CI_Controller {
 
 	public function delete($id)
 	{
-		$this->load->model('User_model');
 
 		$user = $this->User_model->getUser($id);
 
